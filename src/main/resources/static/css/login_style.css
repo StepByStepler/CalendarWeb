@@ -1,0 +1,34 @@
+.loginField {
+    text-align: center;
+    margin: auto;
+}
+
+.loginField > div {
+    padding-top: 10px;
+    display: inline-block;
+    width: 100%;
+    margin: auto;
+}
+
+.loginField > div > input {
+    font-family: "Courier New", serif;
+    font-size: 20px;
+}
+
+.loginField > div > div {
+    margin: 10px;
+}
+
+.loginField > div > div > * {
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 20px;
+    background: linear-gradient(10deg, #6CE1E0, white);
+    border: rgba(100, 100, 100, 0.5) 2px solid;
+    border-radius: 5px;
+}
+
+.loginField > div > div > *:hover {
+    background: linear-gradient(10deg, #6CE1E0, #C2C2C2);
+    border: rgba(70, 70, 70, 0.5) 2px solid;
+}

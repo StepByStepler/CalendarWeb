@@ -1,0 +1,52 @@
+.wrapper {
+	width: 1200px;
+	height: 550px;
+	margin: 0px auto;
+}
+
+.panel {
+	text-align: center;
+	padding: 0px 40px;
+	width: 1200px;
+	height: 50px;
+}
+
+.panel > * {
+	margin: 0px 15px;
+}
+
+.calendar {
+	display: table;
+	table-layout: fixed;
+	background: #eeeeee;
+	width: 1200px;
+	height: 500px;
+}
+
+.calendar > div {
+	display: table-row;
+}
+.calendar > div:first-child {
+	user-select: none;
+	height: 30px;
+}
+
+.calendar > div > div {
+	user-select: none;
+	display: table-cell;
+	vertical-align: top;
+}
+
+.calendar > div > div > div {
+	position: relative;
+	height: 100%;
+}
+.calendar > div > div > div > div {
+	user-select: text;
+	color: black;
+	opacity: 0.6;
+	background: #44C8DC;
+	width: 100%;
+	position: absolute;
+	font-size: 16px;
+}
