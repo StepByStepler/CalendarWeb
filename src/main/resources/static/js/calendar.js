@@ -79,10 +79,14 @@ function login(json) {
 }
 
 function attemptRegister() {
-    var loginField = document.querySelector('input[name="login"]');
-    var passwordField = document.querySelector('input[name="password"]');
-    if(loginField.value !== '' && passwordField.value !== '') {
-        req.open('GET', '/greeting/attemptRegister?login=' + loginField.value + '&password=' + passwordField.value, true);
+    var login = document.querySelector('input[name="login"]').value;
+    var password = document.querySelector('input[name="password"]').value;
+    var email = document.querySelector('input[name="email"]').value;
+
+    if(login !== '' && password !== '' && email !== '') {
+        req.open('GET', '/greeting/attemptRegister?login=' + login +
+                                                 '&password=' + password +
+                                                 '&email=' + email, true);
         req.send();
     }
 }

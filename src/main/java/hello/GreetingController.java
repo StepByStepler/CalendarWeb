@@ -25,20 +25,15 @@ import java.util.Map;
 @Component
 @Controller
 public class GreetingController {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+
     @Autowired
     private AccountRepository accountRepository;
     @Autowired
     private DateRepository dateRepository;
 
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name = "name", required = false, defaultValue = "user") String name,
-                           @RequestParam(name = "password", required = false, defaultValue = "pass") String password,
-                           Map<String, Object> model) {
-        Iterable<Accounts> all = accountRepository.findAll();
-
-        model.put("dates", all);
-        model.put("name", name);
+    @GetMapping("greeting")
+    public String greeting() {
         return "greeting";
     }
 
@@ -100,6 +95,7 @@ public class GreetingController {
     public String attemptLogin(@RequestParam(name = "login") String login,
                                @RequestParam(name = "password") String password) {
         JSONObject response = new JSONObject();
+
         response.put("response_type", "attemptLogin");
 
         password = DigestUtils.md5Hex(password);
@@ -118,14 +114,16 @@ public class GreetingController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = "/greeting/attemptRegister", produces = "application/json")
     public String attemptRegister(@RequestParam(name = "login") String login,
-                                  @RequestParam(name = "password") String password) {
+                                  @RequestParam(name = "password") String password,
+                                  @RequestParam(name = "email") String email) {
         JSONObject response = new JSONObject();
         response.put("response_type", "attemptRegister");
+
         Accounts account = accountRepository.findByLogin(login);
         if(account == null) {
 
             password = DigestUtils.md5Hex(password);
-            Accounts newAccount = new Accounts(login, password);
+            Accounts newAccount = new Accounts(login, password, email);
             accountRepository.save(newAccount);
 
             response.put("success", true);
